@@ -329,8 +329,12 @@ class WesleyBot {
         if (saved) {
             return JSON.parse(saved);
         }
+        // Use API key from config.js if available, otherwise empty
+        const defaultApiKey = (typeof CONFIG !== 'undefined' && CONFIG.OPENROUTER_API_KEY) 
+            ? CONFIG.OPENROUTER_API_KEY 
+            : '';
         return {
-            apiKey: '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',
+            apiKey: defaultApiKey,
             model: 'openai/gpt-3.5-turbo',
             voiceEnabled: true,
             voiceSpeed: 1
